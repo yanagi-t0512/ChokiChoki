@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ChokiChoki</title>
+<!-- リンク -->
+<th:block th:insert="common/link::link"></th:block>
+</head>
+<body>
+<!-- ヘッダー -->
+<th:block th:insert="common/layout::header"></th:block>
+
+<!-- スタッフ登録 -->
+<div class="container-fluid main">
+  <div class="row">
+  <!-- サイドバー -->
+  <th:block th:insert="common/layout::sidebar"></th:block>
+
+  <div class="col-sm-6 mx-auto">
+    <!-- 入力フォーム -->
+    <div class="container bg-light form">
+    <form method="post" action="./staff.html" th:action="@{/staff}">
+      <h4 class="text-center">スタッフ登録</h4>
+      <hr/>
+      <!-- スタッフ名 -->
+      <div class="form-group mx-auto w-50">
+        <label for="staffName">スタッフ名</label>
+        <input class="form-control" type="text"
+          th:field="${staff.staffName}">
+      </div>
+      <!-- 指名料金 -->
+      <div class="form-group mx-auto w-50">
+        <label for="fee">指名料金</label>
+        <input class="form-control" type="text"
+          th:field="${staff.fee}">
+      </div>
+      <!-- 登録ボタン -->
+      <br/>
+      <div class="text-center">
+        <button type="submit" class="btn btn-warning">
+          登録
+        </button>
+      </div>
+    </form>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- スクリプト -->
+<th:block th:insert="common/link::script"></th:block>
+</body>
+</html>

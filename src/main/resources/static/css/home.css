@@ -1,0 +1,37 @@
+body{
+	padding-top:0px;
+}
+
+ul {
+	list-style: none;
+}
+li {
+ 	padding-top: 20px;
+}
+.header{
+	height:60px;
+}
+
+.sidebar{
+	padding-top:10px;
+}
+
+.main{
+	padding-top:0px;
+}
+.form{
+	padding-top:15px;
+	padding-bottom:0px;
+}
+
+.page-header{
+	margin-top:0px;
+}
+
+.jumbotron-ex{
+	text-align: top;
+}
+
+.carousel img{
+	width: 70%;
+}

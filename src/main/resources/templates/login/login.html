@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ChokiChoki</title>
+<!-- リンク -->
+<th:block th:insert="common/link::link"></th:block>
+</head>
+<body>
+<!-- ヘッダー -->
+<th:block th:insert="common/layout::header"></th:block>
+
+<!-- ログイン -->
+<div class="text-center">
+<br/>
+<h1>ログイン</h1>
+<br/>
+  <div class="alert alert-danger" th:if="${param.error}">
+    <small>ユーザー名かパスワードが正しくありません</small>
+  </div>
+  <div class="alert alert-success" th:if="${param.logout}">
+    <small>ログアウトしました</small>
+  </div>
+
+  <!-- 入力フォーム -->
+  <form method="post" th:action="@{/login}" class="user">
+    <div class="form-group">
+      <!-- ユーザー名 -->
+      <label>ユーザー名</label>
+      <input type="text" name="username" placeholder="user"/><br/>
+      <br/>
+      <!-- パスワード -->
+      <label>パスワード</label>
+      <input type="password" name="password" placeholder="12345"/><br/>
+      <br/>
+      <div>
+        <p class="text-danger">ユーザー名：admin、パスワード：password　で管理者としてログイン</p>
+        <p class="text-danger">ユーザー名：user、パスワード：password　で一般ユーザーとしてログインできます</p>
+      </div>
+      <!-- ログインボタン -->
+      <button class="btn btn-primary" type="submit">ログイン</button>
+    </div>
+  </form>
+  <br/>
+  <a th:href="@{/signup}">新規ユーザー登録</a>
+</div>
+
+<!-- スクリプト -->
+<th:block th:insert="common/link::script"></th:block>
+</body>
+</html>

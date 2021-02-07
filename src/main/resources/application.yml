@@ -1,0 +1,23 @@
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+#  config:
+#    activate:
+#      on-profile: dev
+#  datasource:
+#    initialization-mode: always
+#    url: jdbc:mysql://aa6bjp7mice7xc.cfmufsq6fi6z.ap-northeast-1.rds.amazonaws.com:3306/ebdb
+#    username: admin
+#    password: password
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.example.demo.model
+server:
+  port: 5000

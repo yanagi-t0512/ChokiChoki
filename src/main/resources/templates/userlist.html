@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ChokiChoki</title>
+<!-- リンク -->
+<th:block th:insert="common/link::link"></th:block>
+</head>
+<body>
+<!-- ヘッダー -->
+<th:block th:insert="common/layout::header"></th:block>
+
+<div class="container-fluid main">
+  <div class="row">
+  <!-- サイドバー -->
+  <th:block th:insert="common/layout::sidebar"></th:block>
+
+  <div class="col-sm-10">
+  <div th:if="${success}" class="alert alert-success">[[${success}]]</div>
+    <hr/>
+    <!-- ユーザー一覧 -->
+    <h4 class="text-center">ユーザー一覧</h4>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover px-5">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">名前</th>
+            <th scope="col">Email</th>
+            <th scope="col">年齢</th>
+            <th colspan="1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="siteUser : ${siteUsers}" th:object="${siteUser}">
+
+            <td th:text="*{userName}"></td>
+            <td style="width: 30%" th:text="*{email}"></td>
+            <td th:text="*{age}"></td>
+            <td>
+              <button type="submit" class="btn btn-info">
+                詳細
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- スクリプト -->
+<th:block th:insert="common/link::script"></th:block>
+</body>
+</html>

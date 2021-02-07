@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ChokiChoki</title>
+<!-- リンク -->
+<th:block th:insert="common/link::link"></th:block>
+</head>
+<body>
+<!-- ヘッダー -->
+<th:block th:insert="common/layout::header"></th:block>
+
+<!-- ユーザー登録フォーム -->
+<div class="container-fluid main">
+  <div class="row">
+  <!-- サイドバー -->
+  <th:block th:insert="common/layout::sidebar"></th:block>
+
+  <div class="col-sm-8 mx-auto">
+    <!-- 入力フォーム -->
+    <div class="container bg-light form">
+      <h4 class="text-center">ユーザー登録</h4>
+      <hr/>
+      <form method="post" action="./signup.html" th:action="@{/signup}">
+      <table class="table table-sm table-borderless text-center mx-5">
+        <!-- ユーザー名 -->
+        <tr>
+          <th width="150">ユーザー名</th>
+          <td>
+            <div class="form-group w-75">
+              <input class="form-control" type="text"
+               th:field="${site_user.userName}">
+            </div>
+          </td>
+        </tr>
+        <!-- パスワード -->
+        <tr>
+          <th>パスワード</th>
+          <td>
+            <div class="form-group w-75">
+              <input class="form-control" type="text"
+               th:field="${site_user.password}">
+            </div>
+          </td>
+        </tr>
+        <!-- メールアドレス -->
+        <tr>
+          <th>メールアドレス</th>
+          <td>
+            <div class="form-group w-75">
+              <input class="form-control" type="email"
+               th:field="${site_user.email}">
+            </div>
+          </td>
+        </tr>
+        <!-- 年齢 -->
+        <tr>
+          <th>年齢</th>
+          <td>
+            <div class="form-group w-75">
+              <input class="form-control" type="text"
+               th:field="${site_user.age}">
+            </div>
+          </td>
+        </tr>
+
+      </table>
+      <!-- 登録ボタン -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-lg btn-primary">
+          登録
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- スクリプト -->
+<th:block th:insert="common/link::script"></th:block>
+</body>
+</html>
