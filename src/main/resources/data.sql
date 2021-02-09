@@ -1,8 +1,8 @@
-INSERT INTO site_user(id, user_Name, password, email, age, role)
+INSERT INTO site_user(id, siteuser_Name, password, email, age, role)
 VALUES(1, 'admin', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'tanaka@email.com', 20, 'ADMIN');
-INSERT INTO site_user(id, user_Name, password, email, age, role)
+INSERT INTO site_user(id, siteuser_Name, password, email, age, role)
 VALUES(2, 'user', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'sato@email.com', 25, 'GENERAL');
-INSERT INTO site_user(id, user_Name, password, email, age, role)
+INSERT INTO site_user(id, siteuser_Name, password, email, age, role)
 VALUES(3, 'ippan', '$2a$10$xRTXvpMWly0oGiu65WZlm.3YL95LGVV2ASFjDhe6WF4.Qji1huIPa', 'takahashi@email.com', 35, 'GENERAL');
 
 

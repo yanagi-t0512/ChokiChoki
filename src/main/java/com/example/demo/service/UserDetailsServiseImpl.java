@@ -27,7 +27,7 @@ public class UserDetailsServiseImpl implements UserDetailsService {
 		throws UsernameNotFoundException{
 
 		// ユーザー名をキーにユーザー情報を取得
-		SiteUser user = userRepository.findByUserName(username);
+		SiteUser user = userRepository.findBySiteUserName(username);
 
 		// 取得したユーザー情報をもとにUserオブジェクトを生成
 		if(user == null) {
@@ -41,7 +41,7 @@ public class UserDetailsServiseImpl implements UserDetailsService {
 		Set<GrantedAuthority> grantedAuthories = new HashSet<>();
 		grantedAuthories.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
 
-		return new User(user.getUserName(), user.getPassword(), grantedAuthories);
+		return new User(user.getSiteUserName(), user.getPassword(), grantedAuthories);
 	}
 
 }

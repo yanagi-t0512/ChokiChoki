@@ -10,7 +10,7 @@
 <!-- ヘッダー -->
 <th:block th:insert="common/layout::header"></th:block>
 
-<!-- ユーザー登録フォーム -->
+<!-- ユーザー編集フォーム -->
 <div class="container-fluid main">
   <div class="row">
   <!-- サイドバー -->
@@ -19,9 +19,10 @@
   <div class="col-sm-8 mx-auto">
     <!-- 入力フォーム -->
     <div class="container bg-light form">
-      <h4 class="text-center">ユーザー登録</h4>
+      <h4 class="text-center">ユーザー編集</h4>
       <hr/>
-      <form method="post" action="./signup.html" th:action="@{/signup}">
+      <form method="post" action="./edituser.html" th:action="@{/edituser/{id}(id=${siteUserId})}">
+      <!-- <input name="_method" type="hidden" value="patch" /> -->
       <table class="table table-sm table-borderless text-center mx-5">
         <!-- ユーザー名 -->
         <tr>
@@ -29,7 +30,8 @@
           <td>
             <div class="form-group w-75">
               <input class="form-control" type="text"
-               th:field="${siteUser.siteUserName}">
+               th:field="${form.siteUserName}"
+               id="input-siteUserName" />
             </div>
           </td>
         </tr>
@@ -39,7 +41,8 @@
           <td>
             <div class="form-group w-75">
               <input class="form-control" type="password"
-               th:field="${siteUser.password}">
+               th:field="${form.password}"
+               id="input-password">
             </div>
           </td>
         </tr>
@@ -49,7 +52,7 @@
           <td>
             <div class="form-group w-75">
               <input class="form-control" type="email"
-               th:field="${siteUser.email}">
+               th:field="${form.email}">
             </div>
           </td>
         </tr>
@@ -59,16 +62,16 @@
           <td>
             <div class="form-group w-75">
               <input class="form-control" type="text"
-               th:field="${siteUser.age}">
+               th:field="${form.age}">
             </div>
           </td>
         </tr>
 
       </table>
-      <!-- 登録ボタン -->
+      <!-- 更新ボタン -->
       <div class="text-center">
-        <button type="submit" class="btn btn-lg btn-primary">
-          登録
+        <button type="submit" name="update" class="btn btn-lg btn-primary">
+          更新
         </button>
       </div>
       </form>

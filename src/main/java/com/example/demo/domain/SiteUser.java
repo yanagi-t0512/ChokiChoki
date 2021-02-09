@@ -7,19 +7,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "site_user")
 @Data
+@AllArgsConstructor
 public class SiteUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "user_Name")
-	public String userName;
+	@Column(name = "siteuser_Name")
+	public String siteUserName;
 
 	@Column(name = "password")
 	public String password;
@@ -37,12 +39,12 @@ public class SiteUser {
 
 	}
 
-	public SiteUser(String userName,
+	public SiteUser(String siteUserName,
 					String password,
 					String email,
 					Integer age,
 					String role) {
-		this.userName = userName;
+		this.siteUserName = siteUserName;
 		this.password = password;
 		this.email = email;
 		this.age = age;

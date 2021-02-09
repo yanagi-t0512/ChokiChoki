@@ -32,6 +32,11 @@ public class SiteUserService {
 	}
 
 	@Transactional(readOnly = false)
+	public SiteUser updateSiteUser(SiteUser siteUser) {
+		return siteUserRepository.save(siteUser);
+	}
+
+	@Transactional(readOnly = false)
 	public void deleteSiteUser(Integer id) {
 		siteUserRepository.deleteById(id);
 	}

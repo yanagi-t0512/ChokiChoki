@@ -40,13 +40,13 @@ public class SiteUserController {
 
 	}
 	private SiteUserForm createInitialForm() {
-		String userName = "";
+		String siteUserName = "";
 		String password = "";
 		String email = "";
 		Integer age = 0;
 		String role = "";
 		return new SiteUserForm(
-				userName, password, email, age, role);
+				siteUserName, password, email, age, role);
 	}
 
 	// ユーザー登録画面を表示
@@ -54,7 +54,7 @@ public class SiteUserController {
 	public ModelAndView createSiteUser() {
 		SiteUserForm form = createInitialForm();
 		ModelAndView mv = new ModelAndView("signup");
-		mv.addObject("site_user", form);
+		mv.addObject("siteUser", form);
 		return mv;
 	}
 
@@ -68,7 +68,7 @@ public class SiteUserController {
 		return new ModelAndView("redirect:/reservation");
 	}
 	private void createSiteUser(SiteUserForm form) {
-		String userName = form.getUserName();
+		String siteUserName = form.getSiteUserName();
 		String password = passwordEncoder.encode(form.getPassword());
 		String email = form.getEmail();
 		Integer age = form.getAge();
@@ -79,10 +79,64 @@ public class SiteUserController {
 			role = Role.GENERAL.name();
 		}
 
-		SiteUser siteUser = new SiteUser(userName, password, email, age, role);
+		SiteUser siteUser = new SiteUser(siteUserName, password, email, age, role);
 		siteUserService.createSiteUser(siteUser);
 	}
 
+	// ユーザーを1件取得
+	@GetMapping(value = "/edituser/{id}")
+	public ModelAndView readOneSiteUser(@PathVariable Integer id) {
+		Optional<SiteUserForm> form = readSiteUserFormId(id);
+		if(!form.isPresent()) {
+			return new ModelAndView("redirect:/userlist");
+		}
+		ModelAndView mv = new ModelAndView("edituser");
+		mv.addObject("siteUserId", id);
+		mv.addObject("form", form.get());
+		List<SiteUser> siteUsers = siteUserService.findAllSiteUsers();
+		mv.addObject("siteUsers", siteUsers);
+		return mv;
+	}
+	private Optional<SiteUserForm> readSiteUserFormId(Integer id) {
+		Optional<SiteUser> siteUser = siteUserService.findOneSiteUser(id);
+		if(!siteUser.isPresent()) {
+			return Optional.ofNullable(null);
+		}
+		String formSiteUserName = siteUser.get().getSiteUserName();
+		String formPassword = siteUser.get().getPassword();
+		String formEmail = siteUser.get().getEmail();
+		Integer formAge = siteUser.get().getAge();
+		String formRole = siteUser.get().getRole();
+		SiteUserForm form
+			= new SiteUserForm(
+					formSiteUserName,
+					formPassword,
+					formEmail,
+					formAge,
+					formRole);
+		return Optional.ofNullable(form);
+	}
+	// ユーザーを1件更新
+	@PostMapping(value = "/edituser/{id}")
+	public ModelAndView updateOneSiteUser(@PathVariable Integer id,
+			@ModelAttribute SiteUserForm form,
+			RedirectAttributes attrs) {
+		updateSiteUser(id,form);
+		// フラッシュメッセージ
+		attrs.addFlashAttribute("success", "ユーザーの更新を行いました");
+		return new ModelAndView("redirect:/userlist");
+	}
+	private void updateSiteUser(
+			Integer id,
+			SiteUserForm form) {
+		String siteUserName = form.getSiteUserName();
+		String password = passwordEncoder.encode(form.getPassword());
+		String email = form.getEmail();
+		Integer age = form.getAge();
+		String role = form.getRole();
+		SiteUser siteUser = new SiteUser(id,siteUserName, password, email, age, role);
+		siteUserService.updateSiteUser(siteUser);
+	}
 
 	// ユーザーを削除
 	@DeleteMapping(value = "delete/{id}")

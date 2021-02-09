@@ -9,7 +9,7 @@ import com.example.demo.domain.SiteUser;
 public interface SiteUserRepository
 	extends JpaRepository<SiteUser, Integer>{
 
-	SiteUser findByUserName(String userName);
+	SiteUser findBySiteUserName(String siteUserName);
 //	boolean existByUserName(String userName);
 
 }
