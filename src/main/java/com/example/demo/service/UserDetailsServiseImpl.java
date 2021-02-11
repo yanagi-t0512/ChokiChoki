@@ -35,6 +35,7 @@ public class UserDetailsServiseImpl implements UserDetailsService {
 			throw new UsernameNotFoundException(username + " not found");
 		}
 		return createUserDetails(user);
+		//return user;
 	}
 
 	public User createUserDetails(SiteUser user) {

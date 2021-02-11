@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/"))
 				.and()
 			.rememberMe();
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 
 	@Override

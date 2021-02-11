@@ -20,10 +20,11 @@ VALUES(2, '水勢剣　流', 1500);
 INSERT INTO staff(id, staff_Name, fee)
 VALUES(3, '雷鳴剣　雷', 5000);
 
-/*VALUES(1, 1, 1, '2020-12-12', 'シャンプー強め希望');
-INSERT INTO reservation(id, customer_Id, menu_Id, staff_Id, reserve_Date, request)
-VALUES(2, 1, 2, 2, '2020-12-13', 'ヘアカラー');
-INSERT INTO reservation(id, customer_Id, menu_Id, staff_Id, reserve_Date, request)
-VALUES(3, 1, 3, 3, '2020-12-14', 'マッサージ');
-*/
+--INSERT INTO reservation(site_user_Id, menu_Id, staff_Id, reserve_Date, request)
+--VALUES(1, 1, 1, '2020-12-12', 'シャンプー');
+--INSERT INTO reservation(id, site_user_Id, menu_Id, staff_Id, reserve_Date, request)
+--VALUES(1, 2, 2, '2020-12-13', 'シャンプー');
+--INSERT INTO reservation(id, site_user_Id, menu_Id, staff_Id, reserve_Date, request)
+--VALUES(1, 3, 3, '2020-12-14', 'マッサージ');
+
 

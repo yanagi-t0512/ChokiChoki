@@ -39,7 +39,7 @@ public class Reservation {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate reserveDate;
 
-	@Column(name = "request")
+	@Column(name = "request", nullable = false)
 	String request;
 
 	@ManyToOne

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.domain.Reservation;
-import com.example.demo.repository.RreservationRepository;
+import com.example.demo.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
 
 	@Autowired
-	RreservationRepository reservationRepository;
+	ReservationRepository reservationRepository;
 
 	@Transactional(readOnly = true)
 	public List<Reservation> findAllReservations(){
@@ -34,5 +34,9 @@ public class ReservationService {
 	@Transactional(readOnly = false)
 	public void deleteReservation(Integer id) {
 		reservationRepository.deleteById(id);
+	}
+
+	public int count() {
+		return (int) reservationRepository.count();
 	}
 }

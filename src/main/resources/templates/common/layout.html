@@ -27,6 +27,15 @@
     <div class="col d-flex flex-culumn">
       <ul class="sidebar">
         <li>
+            <label th:text="ユーザー"></label>
+            <span sec:authentication="name"></span>
+            <br/>
+            <label th:text="ロール"></label>
+            <span sec:authentication="principal.authorities"></span>
+        </li>
+        <!-- Divider -->
+        <hr>
+        <li>
           <a th:href="@{/reservation}" class="text-dark">
           予約入力
           </a><br/>

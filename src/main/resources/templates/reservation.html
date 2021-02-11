@@ -17,7 +17,7 @@
   <!-- サイドバー -->
   <th:block th:insert="common/layout::sidebar"></th:block>
 
-  <div class="col-sm-10 mx-auto">
+  <div class="col-sm-9 mx-auto">
   <!-- フラッシュメッセージ -->
   <div th:if="${success}" class="alert alert-success">[[${success}]]</div>
   <div th:if="${delete}" class="alert alert-danger">[[${delete}]]</div>
@@ -89,6 +89,10 @@
   <hr/>
   <!-- 予約一覧 -->
   <h4 class="text-center">予約一覧</h4>
+  <label class="text-info" th:text="'合計：' + ${count} + '件'"></label>
+  <ul>
+    <li th:each="g : ${group}">[[${g.menu}]]:[[${g.number}]]件</li>
+  </ul>
   <div class="table-responsive">
   <table class="table table-sm">
     <thead class="thead-dark">
