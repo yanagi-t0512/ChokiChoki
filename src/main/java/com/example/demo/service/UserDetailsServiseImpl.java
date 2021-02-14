@@ -28,20 +28,17 @@ public class UserDetailsServiseImpl implements UserDetailsService {
 
 		// ユーザー名をキーにユーザー情報を取得
 		SiteUser user = userRepository.findBySiteUserName(username);
-
 		// 取得したユーザー情報をもとにUserオブジェクトを生成
 		if(user == null) {
-
 			throw new UsernameNotFoundException(username + " not found");
 		}
 		return createUserDetails(user);
-		//return user;
 	}
 
 	public User createUserDetails(SiteUser user) {
+
 		Set<GrantedAuthority> grantedAuthories = new HashSet<>();
 		grantedAuthories.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
-
 		return new User(user.getSiteUserName(), user.getPassword(), grantedAuthories);
 	}
 

@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +18,10 @@ public interface ReservationRepository
 			+ "FROM Reservation r LEFT JOIN Menu m ON m.id = r.menuId "
 			+ "GROUP BY m.kind")
 	Collection<ReservationCount> groupByMenu();
+
+	List<Reservation> findByMenuId(Integer menuId);
+	List<Reservation> findByStaffId(Integer staffId);
+
+	List<Reservation> findBySiteUserId(Integer siteUserId);
 
 }

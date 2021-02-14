@@ -12,4 +12,5 @@ public interface SiteUserRepository
 	SiteUser findBySiteUserName(String siteUserName);
 //	boolean existByUserName(String userName);
 
+
 }

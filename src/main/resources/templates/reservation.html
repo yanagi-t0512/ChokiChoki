@@ -22,7 +22,11 @@
   <div th:if="${success}" class="alert alert-success">[[${success}]]</div>
   <div th:if="${delete}" class="alert alert-danger">[[${delete}]]</div>
 
-  <!-- 入力フォーム -->
+  <!-- 予約入力フォームは一般ユーザーのみ表示 -->
+  <th:block sec:authorize="hasRole('GENERAL')">
+    <label th:text="予約入力フォームは、一般ユーザーのみ表示"></label>
+
+  <!-- 予約入力フォーム -->
   <div class="container bg-light form">
     <h4 class="text-center">予約入力</h4>
     <hr/>
@@ -85,18 +89,92 @@
     </div>
     </form>
   </div>
+  </th:block>
+
+  <!-- 検索フォームは管理者ユーザーのみ表示 -->
+  <th:block sec:authorize="hasRole('ADMIN')">
+    <label th:text="検索フォームは、管理者ユーザーのみ表示"></label>
+
+  <!-- 検索フォーム -->
+  <div class="container bg-light form">
+    <h4 class="text-center">予約検索</h4>
+    <hr/>
+    <form method="post" th:action="@{/}" th:object="${query}">
+    <table class="table table-sm table-borderless text-center">
+      <tr>
+        <!-- メニュー -->
+        <th>メニュー</th>
+        <td>
+          <select class="form-control" th:field=${query.menuId}>
+            <th:block th:each="menu : ${@menuRepository.findAll()}">
+              <option th:value="${menu.id}" th:text="${menu.kind}">
+              </option>
+            </th:block>
+          </select>
+        </td>
+        <!-- 担当者 -->
+        <th>担当者</th>
+        <td>
+          <select class="form-control" th:field=${query.staffId}>
+            <th:block th:each="staff : ${@staffRepository.findAll()}">
+              <option th:value="${staff.id}" th:text="${staff.staffName}">
+              </option>
+            </th:block>
+          </select>
+        </td>
+      </tr>
+      <!-- 予約日 -->
+      <!-- <tr>
+        <th>予約日</th>
+        <td>
+          <div class="form-group col-sm-6 mx-5">
+            <input class="form-control" type="date"
+              th:field="${query.reserveDate}">
+          </div>
+        </td>
+      </tr -->
+      <!-- 要望事項 -->
+      <!-- <tr>
+        <th>要望事項</th>
+        <td>
+          <div class="form-group col-sm-6 mx-5">
+            <input class="form-control" type="text"
+              th:field="${query.request}">
+          </div>
+        </td>
+      </tr> -->
+    </table>
+    <!-- 検索ボタン -->
+    <div class="text-center">
+      <button type="submit" th:formaction="@{/reservation/query}" class="btn btn-info">
+        検索
+      </button>
+    </div>
+    </form>
+  </div>
+  </th:block>
 
   <hr/>
   <!-- 予約一覧 -->
   <h4 class="text-center">予約一覧</h4>
+
+  <!-- 合計数、メニュー毎の件数は、一般ユーザーは非表示 -->
+  <th:block sec:authorize="hasRole('ADMIN')">
+  <!-- 予約の合計数 -->
   <label class="text-info" th:text="'合計：' + ${count} + '件'"></label>
-  <ul>
-    <li th:each="g : ${group}">[[${g.menu}]]:[[${g.number}]]件</li>
-  </ul>
+    <!-- メニュー毎の予約件数 -->
+    <ul>
+      <li th:each="g : ${group}">[[${g.menu}]]:[[${g.number}]]件</li>
+    </ul>
+
+
+  </th:block>
+
   <div class="table-responsive">
   <table class="table table-sm">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">ユーザー名</th>
         <th scope="col">予約日</th>
         <th scope="col">メニュー</th>
         <th scope="col">料金</th>
@@ -108,7 +186,7 @@
     </thead>
     <tbody>
       <tr th:each="reservation : ${reservations}" th:object="${reservation}">
-
+        <td th:text="*{siteUser.siteUserName}"></td>
         <td th:text="*{reserveDate}"></td>
         <td th:text="*{menu.kind}"></td>
         <td th:text="*{menu.price}"></td>
@@ -119,7 +197,7 @@
           <form method="post" action="./reservation.html"
             th:action="@{/reservation/{id} (id=${reservation.id})}">
             <input type="hidden" name="_method" value="delete" />
-            <input type="submit" class="btn btn-danger" value="キャンセル"/>
+            <input type="submit" class="btn btn-danger btn-sm" value="キャンセル"/>
           </form>
         </td>
       </tr>

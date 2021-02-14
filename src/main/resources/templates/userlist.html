@@ -15,12 +15,12 @@
   <!-- サイドバー -->
   <th:block th:insert="common/layout::sidebar"></th:block>
 
-  <div class="col-sm-10">
+  <div class="col-sm-9">
   <div th:if="${success}" class="alert alert-success">[[${success}]]</div>
     <hr/>
     <!-- ユーザー一覧 -->
     <h4 class="text-center">ユーザー一覧</h4>
-    <div class="table-responsive">
+    <div class="table-responsive bg-light">
       <table class="table table-sm table-hover px-5">
         <thead class="thead-dark">
           <tr>

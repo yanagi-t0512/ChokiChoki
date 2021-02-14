@@ -23,7 +23,7 @@ import lombok.Data;
 public class Reservation {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 
 	@Column(name = "site_user_Id")
@@ -41,6 +41,11 @@ public class Reservation {
 
 	@Column(name = "request", nullable = false)
 	String request;
+
+
+	@ManyToOne
+	@JoinColumn(name = "site_user_id", insertable = false, updatable = false)
+	private SiteUser siteUser;
 
 	@ManyToOne
 	@JoinColumn(name = "menu_id", insertable = false, updatable = false)

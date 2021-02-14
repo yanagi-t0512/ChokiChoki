@@ -78,7 +78,6 @@ public class SiteUserController {
 		} else {
 			role = Role.GENERAL.name();
 		}
-
 		SiteUser siteUser = new SiteUser(siteUserName, password, email, age, role);
 		siteUserService.createSiteUser(siteUser);
 	}
@@ -134,7 +133,7 @@ public class SiteUserController {
 		String email = form.getEmail();
 		Integer age = form.getAge();
 		String role = form.getRole();
-		SiteUser siteUser = new SiteUser(id,siteUserName, password, email, age, role);
+		SiteUser siteUser = new SiteUser(id, siteUserName, password, email, age, role);
 		siteUserService.updateSiteUser(siteUser);
 	}
 

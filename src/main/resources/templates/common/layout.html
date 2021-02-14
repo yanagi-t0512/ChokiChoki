@@ -27,17 +27,22 @@
     <div class="col d-flex flex-culumn">
       <ul class="sidebar">
         <li>
-            <label th:text="ユーザー"></label>
+            <label th:text="ユーザー名："></label>
             <span sec:authentication="name"></span>
             <br/>
-            <label th:text="ロール"></label>
+            <label th:text="ロール："></label>
             <span sec:authentication="principal.authorities"></span>
         </li>
         <!-- Divider -->
         <hr>
         <li>
           <a th:href="@{/reservation}" class="text-dark">
-          予約入力
+          <th:block sec:authorize="hasRole('ADMIN')">
+            予約検索・予約一覧
+          </th:block>
+          <th:block sec:authorize="hasRole('GENERAL')">
+            予約入力
+          </th:block>
           </a><br/>
         </li>
         <!-- Divider -->
